@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stellar - Unlock the Mysteries of the Universe</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        .section {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+        #home {
+            min-height: 100vh;
+            background: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/backgroung%20photo-xnKq8W1QNYu3q73LbMnh7frfy5VOoj.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .logo img {
+            width: 40px;
+            margin-right: 10px;
+        }
+        .website-name {
+            color: #b19cd9;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        nav {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        nav a {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 10px 20px;
+            margin-left: 10px;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        h1, h2 {
+            text-align: center;
+            margin-top: 0;
+        }
+        h1 {
+            font-size: 48px;
+            color: #b19cd9;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
+        #study, #enjoy, #explore, #contact {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .book-options, .video-container, .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .book-option {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            width: calc(50% - 20px);
+            max-width: 300px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .book-option h3 {
+            margin-top: 0;
+        }
+        .download-btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .download-btn:hover {
+            background-color: #45a049;
+        }
+        .video-description {
+            max-width: 500px;
+            text-align: left;
+        }
+        .gallery-item {
+            width: calc(25% - 20px);
+            min-width: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+            background-color: white;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .gallery-item-info {
+            padding: 10px;
+        }
+        .gallery-item-info h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .gallery-item-info p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            color: #666;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 80%;
+            max-height: 80%;
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            object-fit: contain;
+        }
+        .modal-description {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .close {
+            color: white;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .book-option, .gallery-item {
+                width: 100%;
+            }
+        }
+        /* New styles for the explore section */
+        .explore-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .explore-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .explore-item {
+            flex: 0 0 calc(25% - 20px);
+            margin: 0 10px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .explore-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .explore-item-info {
+            padding: 15px;
+        }
+        .explore-item-info h3 {
+            margin: 0 0 5px;
+            font-size: 18px;
+        }
+        .explore-item-info p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+        }
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        .slider-button:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .slider-button.prev {
+            left: 10px;
+        }
+        .slider-button.next {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="section" id="home">
+        <div class="logo">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-LZyAAiOdOwyZePC53rBZksSci5dUo5.jpg" alt="Stellar Logo">
+            <span class="website-name">Stellar</span>
+        </div>
+        <nav>
+            <a href="#study">Study</a>
+            <a href="#enjoy">Enjoy</a>
+            <a href="#explore">Explore</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="content">
+            <h1>UNLOCK THE MYSTERIES<br>OF THE UNIVERSE</h1>
+        </div>
+    </div>
+
+    <div class="section" id="study">
+    <div class="content">
+        <h2>Expand Your Cosmic Knowledge</h2>
+        <p>Embark on an interstellar journey of discovery with our enlightening ebooks. Download now and unlock the mysteries of the universe.</p>
+        <div class="book-options">
+            <div class="book-option">
+                <h3>ِِSarah’s Adventure</h3>
+                <p>Explore the fascinating phenomena of black holes, supernovae, and more.</p>
+                <a href="#" class="download-btn" data-file-id="1uMP4jkWHPsVKTUQAKMAS9Chw_3n-nedZ" onclick="downloadFile(event, this.dataset.fileId, 'Cosmic_Wonders_Unveiled.pdf')">Download Now</a>
+            </div>
+            <div class="book-option">
+                <h3>Exploring Space: Mysteries and Discoveries</h3>
+                <p>Understand the fundamentals of stars, planets, and galaxies.</p>
+                <a href="#" class="download-btn" data-file-id="1Q-OuCxbJkoJzgrJ4L0r3dhf0Zhf2crbe" onclick="downloadFile(event, this.dataset.fileId, 'Journey_Through_the_Cosmos.pdf')">Download Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    <script>
+    function downloadFile(event, fileId, fileName) {
+        event.preventDefault();
+        
+        // Construct the download URL
+        const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+        
+        // Create a temporary anchor element and trigger the download
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        
+        // Clean up
+        setTimeout(() => {
+            document.body.removeChild(a);
+        }, 0);
+    }
+    // ... (rest of your existing JavaScript code)
+</script>
+
+    <div class="section" id="enjoy">
+        <div class="content">
+            <h2>Discover the Wonders of the Universe</h2>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/libKVRa01L8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <div class="video-description">
+                    <p>Embark on an exciting journey through our solar system with our interactive game! Explore the wonders of space, from the scorching surface of Mercury to the icy rings of Saturn.</p>
+                    <p>Learn fascinating facts about each planet, discover hidden moons, and unravel the mysteries of our cosmic neighborhood. Perfect for young astronomers and space enthusiasts!</p>
+                    <p>Features include:</p>
+                    <ul>
+                        <li>Stunning 3D graphics of all eight planets</li>
+                        <li>Interactive missions and quests</li>
+                        <li>Educational content approved by NASA scientists</li>
+                        <li>Fun mini-games for each planet</li>
+                    </ul>
+                    <a href="#" class="download-btn">Download Game</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="explore">
+        <div class="content">
+            <h2>Explore the Cosmos</h2>
+            <div class="explore-container">
+                <button class="slider-button prev" onclick="moveSlider(-1)">&#10094;</button>
+                <button class="slider-button next" onclick="moveSlider(1)">&#10095;</button>
+                <div class="explore-slider" id="exploreSlider">
+                    <!-- Explore items will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="contact">
+        <div class="content">
+            <h2>Contact Us</h2>
+            <p style="text-align: center; font-size: 18px;">
+                For any inquiries, please email us at:
+                <a href="/cdn-cgi/l/email-protection#355c5b535a754641505959544718405b5c43504746501b565a58" style="color: #4CAF50; text-decoration: none;"><span class="__cf_email__" data-cfemail="4c25222a230c3f382920202d3e613922253a293e3f29622f2321">[email&#160;protected]</span></a>
+            </p>
+        </div>
+    </div>
+
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Modal Image">
+            <div class="modal-description">
+                <h3 id="modalTitle"></h3>
+                <p id="modalDescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        function openModal(imageSrc, title, description) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+            modalTitle.textContent = title;
+            modalDescription.textContent = description;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // New code for the explore section
+const cosmicObjects = [
+    // Planets in the Solar System
+    {
+        title: "Mercury",
+        category: "Planets",
+        description: "The smallest planet in our solar system and closest to the Sun, known for its cratered surface.",
+        imageUrl: "https://science.nasa.gov/wp-content/uploads/2024/03/pia15162-mercury-basins-messenger-16x9-1.jpg?w=1536&format=webp"
+    },
+    {
+        title: "Venus",
+        category: "Planets",
+        description: "Often called Earth's twin due to its similar size, this planet is known for its thick, toxic atmosphere.",
+        imageUrl: "https://science.nasa.gov/wp-content/uploads/2024/03/venus-mariner-10-pia23791-fig2-16x9-1.jpg?w=1536&format=webp"
+    },
+    {
+        title: "Earth",
+        category: "Planets",
+        description: "Our home planet, the only known world to support life, with diverse ecosystems and a protective atmosphere.",
+        imageUrl: "https://science.nasa.gov/wp-content/uploads/2024/03/blue-marble-apollo-17-16x9-1.jpg?w=1536&format=webp"
+    },
+    {
+        title: "Mars",
+        category: "Planets",
+        description: "The Red Planet, known for its iron oxide surface and potential for past microbial life.",
+        imageUrl: "https://science.nasa.gov/wp-content/uploads/2024/03/mars-full-globe-16x9-1.jpg?w=1536&format=webp"
+    },
+    {
+        title: "Jupiter",
+        category: "Planets",
+        description: "The largest planet in our solar system, famous for its Great Red Spot and numerous moons.",
+        imageUrl: "https://science.nasa.gov/wp-content/uploads/2024/03/jupiter-marble-pia22946-16x9-1.jpg?w=1536&format=webp"
+    },
+    {
+        title: "Saturn",
+        category: "Planets",
+        description: "Known for its prominent ring system, this gas giant is the second-largest planet in our solar system.",
+        imageUrl: "https://science.nasa.gov/wp-content/uploads/2023/05/saturn-farewell-pia21345-sse-banner-1920x640-1.jpg?w=1536&format=webp"
+    },
+    {
+        title: "Uranus",
+        category: "Planets",
+        description: "An ice giant with a tilted axis of rotation, causing extreme seasonal variations.",
+        imageUrl: "https://science.nasa.gov/wp-content/uploads/2024/03/uranus-pia18182-16x9-1.jpg?w=1536&format=webp"
+    },
+    {
+        title: "Neptune",
+        category: "Planets",
+        description: "The windiest planet in our solar system, known for its vivid blue color due to methane in its atmosphere.",
+        imageUrl: "https://science.nasa.gov/wp-content/uploads/2024/03/pia01492-neptune-full-disk-16x9-1.jpg?w=1536&format=webp"
+    },
+    // The Sun
+    {
+        title: "The Sun",
+        category: "Stars",
+        description: "The star at the center of our solar system, providing energy for life on Earth through nuclear fusion.",
+        imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001435/GSFC_20171208_Archive_e001435~large.jpg?w=1920&h=1920&fit=clip&crop=faces%2Cfocalpoint"
+    },
+    // Moons in the Solar System
+    {
+        title: "Luna (Earth's Moon)",
+        category: "Moons",
+        description: "Earth's only natural satellite, influencing tides and stabilizing our planet's axial tilt.",
+        imageUrl: "https://smd-cms.nasa.gov/wp-content/uploads/2023/08/penumbral-eclipse.png"
+    },
+    {
+        title: "Phobos",
+        category: "Moons",
+        description: "One of Mars' two small, irregularly shaped moons, orbiting very close to the planet's surface.",
+        imageUrl: "https://science.nasa.gov/wp-content/uploads/2017/11/phobos-pia10368-1920x1200-1.jpg?w=1536&format=webp"
+    },
+    {
+        title: "Io",
+        category: "Moons",
+        description: "Jupiter's volcanic moon, the most geologically active body in our solar system.",
+        imageUrl: "https://solarsystem.nasa.gov/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBa3h5IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fac2ae5da0cd5ad40b34adeebfb98cc0ffa9e58c/io_480x320_moons.jpg?disposition=inline"
+    },
+    {
+        title: "Europa",
+        category: "Moons",
+        description: "One of Jupiter's largest moons, known for its icy surface and potential subsurface ocean.",
+        imageUrl: "https://solarsystem.nasa.gov/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBazV5IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--bc6499aed3c53ced067fc005884cb0a74f5b4d6d/PIA19048_320.jpg?disposition=inline"
+    },
+    {
+        title: "Titan",
+        category: "Moons",
+        description: "Saturn's largest moon, featuring a thick atmosphere and liquid methane lakes.",
+        imageUrl: "https://media.npr.org/assets/img/2017/10/16/titan-4620652162f6eb6f466419dca59240f8be2a2acf.jpeg?s=1100&c=85&f=webp"
+    },
+    {
+        title: "Enceladus",
+        category: "Moons",
+        description: "A small, icy moon of Saturn known for its geysers of water vapor erupting from its south pole.",
+        imageUrl: "https://c02.purpledshub.com/uploads/sites/48/2024/07/enceladus-europa-life-social.jpg?w=1175&webp=1"
+    },
+    {
+        title: "Triton",
+        category: "Moons",
+        description: "Neptune's largest moon, notable for its retrograde orbit and active nitrogen geysers.",
+        imageUrl: "https://cdn.mos.cms.futurecdn.net/gHndiSzvfgzFCzbnq2LTJS-650-80.jpg.webp"
+    },
+    // Our Galaxy
+    {
+        title: "Milky Way",
+        category: "Galaxies",
+        description: "Our home galaxy, a vast spiral structure containing hundreds of billions of stars, including our Sun.",
+        imageUrl: "https://www.universetoday.com/wp-content/uploads/2013/10/milky_way.jpg"
+    },
+    // Types of Galaxies
+    {
+        title: "Andromeda Galaxy",
+        category: "Galaxies",
+        description: "The nearest spiral galaxy to the Milky Way, set to collide with our galaxy in about 4.5 billion years.",
+        imageUrl: "https://www.astronomy.com/uploads/2024/08/ASY-AN0924_02-copy-1200x807.jpg"
+    },
+    {
+        title: "Sombrero Galaxy",
+        category: "Galaxies",
+        description: "A peculiar galaxy with a bright nucleus, large central bulge, and a prominent dust lane in its inclined disk.",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/M104_ngc4594_sombrero_galaxy_hi-res.jpg/1920px-M104_ngc4594_sombrero_galaxy_hi-res.jpg"
+    },
+    {
+        title: "Whirlpool Galaxy",
+        category: "Galaxies",
+        description: "A classic spiral galaxy, notable for its well-defined spiral arms and dust lanes.",
+        imageUrl: "https://science.nasa.gov/wp-content/uploads/2023/04/m51-and-companion_0-jpg.webp?w=1536&format=webp"
+    },
+    {
+        title: "Centaurus A",
+        category: "Galaxies",
+        description: "An elliptical galaxy with an active galactic nucleus, featuring a prominent dust lane across its center.",
+        imageUrl: "https://science.nasa.gov/wp-content/uploads/2023/09/cena-lic-lp-nature-cropped.jpg?w=1536&format=webp"
+    },
+    // Types of Nebulas
+    {
+        title: "Orion Nebula",
+        category: "Nebulas",
+        description: "A bright and easily visible nebula located in the constellation of Orion, a stellar nursery where new stars are born.",
+        imageUrl: "https://images.squarespace-cdn.com/content/v1/60d7296aaa6c862de19a7d3b/1627838862213-4K1BJQCXJV3USH3TDY7T/m42-PI.jpg?format=1500w"
+    },
+    {
+        title: "Crab Nebula",
+        category: "Nebulas",
+        description: "The remnant of a supernova explosion observed by Chinese astronomers in 1054 AD.",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Crab_Nebula.jpg/1024px-Crab_Nebula.jpg"
+    },
+    {
+        title: "Eagle Nebula",
+        category: "Nebulas",
+        description: "A young open cluster of stars, famous for its 'Pillars of Creation' formation.",
+        imageUrl: "https://science.nasa.gov/wp-content/uploads/2023/04/hubble_birthofstars_0-jpg.webp?w=1536&format=webp"
+    },
+    {
+        title: "Ring Nebula",
+        category: "Nebulas",
+        description: "A planetary nebula in the constellation Lyra, formed by an expanding shell of ionized gas ejected from a dying star.",
+        imageUrl: "https://science.nasa.gov/wp-content/uploads/2023/04/ring-nebula-full_jpg-jpg.webp?w=1536&format=webp"
+    },
+    {
+        title: "Boomerang Nebula",
+        category: "Nebulas",
+        description: "The coldest known place in the universe, a protoplanetary nebula with a temperature of just 1 Kelvin.",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Boomerang_nebula.jpg/1024px-Boomerang_nebula.jpg"
+    },
+    // Types of Black Holes
+    {
+        title: "Stellar Black Hole",
+        category: "Black Holes",
+        description: "Formed from the collapse of a massive star, typically with a mass of 3 to 10 times that of our Sun.",
+        imageUrl: "https://www.innovationnewsnetwork.com/wp-content/uploads/2023/07/shutterstockLia-Koltyrina_1693616272-800x450.jpg"
+    },
+    {
+        title: "Supermassive Black Hole",
+        category: "Black Holes",
+        description: "Found at the center of most galaxies, including our own Milky Way, with masses millions or billions times that of our Sun.",
+        imageUrl: "https://mediaproxy.salon.com/width/1200/https://media2.salon.com/2023/02/super_massive_black_hole_1182647590.jpg"
+    },
+    {
+        title: "Intermediate Mass Black Hole",
+        category: "Black Holes",
+        description: "A hypothetical class of black holes with masses between stellar and supermassive black holes.",
+        imageUrl: "https://telescope.live/sites/default/files/styles/content_w935_h607/public/2024-07/Picture1.jpg?itok=rzdAVXBv"
+    }
+];
+
+        let currentIndex = 0;
+        let isAnimating = false;
+
+        function createExploreItem(object) {
+            return `
+                <div class="explore-item">
+                    <img src="${object.imageUrl || object.image}" alt="${object.title}">
+                    <div class="explore-item-info">
+                        <h3>${object.title}</h3>
+                        <p>${object.category}</p>
+                        <p>${object.description}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateSlider() {
+            const slider = document.getElementById('exploreSlider');
+            slider.style.transform = `translateX(-${currentIndex * 25}%)`;
+        }
+
+        function moveSlider(direction) {
+            if (isAnimating) return;
+            isAnimating = true;
+            currentIndex = (currentIndex + direction + cosmicObjects.length) % cosmicObjects.length;
+            updateSlider();
+            setTimeout(() => {
+                isAnimating = false;
+            }, 500);
+        }
+
+        function initializeSlider() {
+            const slider = document.getElementById('exploreSlider');
+            slider.innerHTML = cosmicObjects.map(createExploreItem).join('');
+            updateSlider();
+        }
+
+        // Initialize the slider
+        initializeSlider();
+    </script>
+</body>
+</html>

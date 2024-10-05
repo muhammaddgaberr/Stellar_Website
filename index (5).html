@@ -249,6 +249,34 @@
         .slider-button.next {
             right: 10px;
         }
+        
+        .play-btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+        .play-btn:hover {
+            background-color: #45a049;
+        }
+        #contact {
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 40px 20px;
+        }
+        #contact a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        #contact a:hover {
+            text-decoration: underline;
+        }
+        
     </style>
 </head>
 <body>
@@ -269,23 +297,23 @@
     </div>
 
     <div class="section" id="study">
-    <div class="content">
-        <h2>Expand Your Cosmic Knowledge</h2>
-        <p>Embark on an interstellar journey of discovery with our enlightening ebooks. Download now and unlock the mysteries of the universe.</p>
-        <div class="book-options">
-            <div class="book-option">
-                <h3>ِِSarah’s Adventure</h3>
-                <p>Explore the fascinating phenomena of black holes, supernovae, and more.</p>
-                <a href="#" class="download-btn" data-file-id="1uMP4jkWHPsVKTUQAKMAS9Chw_3n-nedZ" onclick="downloadFile(event, this.dataset.fileId, 'Cosmic_Wonders_Unveiled.pdf')">Download Now</a>
-            </div>
-            <div class="book-option">
-                <h3>Exploring Space: Mysteries and Discoveries</h3>
-                <p>Understand the fundamentals of stars, planets, and galaxies.</p>
-                <a href="#" class="download-btn" data-file-id="1Q-OuCxbJkoJzgrJ4L0r3dhf0Zhf2crbe" onclick="downloadFile(event, this.dataset.fileId, 'Journey_Through_the_Cosmos.pdf')">Download Now</a>
+        <div class="content">
+            <h2>Expand Your Cosmic Knowledge</h2>
+            <p>Embark on a journey of discovery with our enlightening ebooks. Download now and unlock the mysteries of the universe.</p>
+            <div class="book-options">
+                <div class="book-option">
+                    <h3>Sarah's Adventure</h3>
+                    <p>Join Sarah and her robot friend Jak on a thrilling adventure through the solar system, where you'll discover fascinating facts about each planet!</p>
+                    <a href="#" class="download-btn" onclick="downloadFile('1PvpA0c0sdiLpf72wCO5PGye8qs1F54ht', 'Sarahs_Adventure.pdf')">Download Now</a>
+                </div>
+                <div class="book-option">
+                    <h3>Exploring Space: Mysteries and Discoveries</h3>
+                    <p>Embark on an exciting journey through the universe, uncovering the mysteries of space, black holes, and the future of exploration!</p>
+                    <a href="#" class="download-btn" onclick="downloadFile('1loz-JKvp-cpMDQ0icfpYwZHbJ8YSI2mp', 'Exploring_Space.pdf')">Download Now</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
     
     <script>
     function downloadFile(event, fileId, fileName) {
@@ -311,24 +339,56 @@
 
     <div class="section" id="enjoy">
         <div class="content">
-            <h2>Discover the Wonders of the Universe</h2>
+            <h2>Enjoy the Wonders of the Universe</h2>
             <div class="video-container">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/libKVRa01L8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 <div class="video-description">
-                    <p>Embark on an exciting journey through our solar system with our interactive game! Explore the wonders of space, from the scorching surface of Mercury to the icy rings of Saturn.</p>
-                    <p>Learn fascinating facts about each planet, discover hidden moons, and unravel the mysteries of our cosmic neighborhood. Perfect for young astronomers and space enthusiasts!</p>
+                    <p>Embark on a thrilling journey through our solar system, where learning meets fun! This interactive game is designed for young explorers eager to uncover the secrets of space while enjoying every moment.</p>
+                    
                     <p>Features include:</p>
                     <ul>
-                        <li>Stunning 3D graphics of all eight planets</li>
-                        <li>Interactive missions and quests</li>
-                        <li>Educational content approved by NASA scientists</li>
-                        <li>Fun mini-games for each planet</li>
+                        <li>Vibrant 2D Graphics: Eye-catching visuals that bring the solar system to life.</li>
+                        <li>Two Levels of Adventure: Level 1 focuses on exploration, while Level 2 challenges your knowledge.</li>
+                        <li>Engaging Quizzes: Fun questions that reinforce what you've learned in Level 1.</li>
+                        <li>Informative Gameplay: Educational content designed to spark curiosity about space.</li>
                     </ul>
-                    <a href="#" class="download-btn">Download Game</a>
+                    <a href="https://stellar-5.firebaseapp.com/" class="play-btn" target="_blank" rel="noopener noreferrer">Play Now</a>
+                    <a href="#" class="download-btn" onclick="downloadFile('1dV40vdbvhZgkCtzjL-JszZyvNYC7_sLm', 'Space_Explorer_Game.zip')">Download Game</a>
                 </div>
             </div>
         </div>
     </div>
+    
+    
+    <script>
+        // ... (keep all existing JavaScript) ...
+
+        function downloadFile(fileId, fileName) {
+            const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // ... (keep all other existing JavaScript) ...
+    </script>
+    
+    <script>
+        // ... (keep all existing JavaScript) ...
+
+        function downloadFile(fileId, fileName) {
+            const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
 
     <div class="section" id="explore">
         <div class="content">
@@ -348,7 +408,7 @@
             <h2>Contact Us</h2>
             <p style="text-align: center; font-size: 18px;">
                 For any inquiries, please email us at:
-                <a href="/cdn-cgi/l/email-protection#355c5b535a754641505959544718405b5c43504746501b565a58" style="color: #4CAF50; text-decoration: none;"><span class="__cf_email__" data-cfemail="4c25222a230c3f382920202d3e613922253a293e3f29622f2321">[email&#160;protected]</span></a>
+                <a href="mailto:stellarteam2025@gmail.com">stellarteam2025@gmail.com</a>
             </p>
         </div>
     </div>
